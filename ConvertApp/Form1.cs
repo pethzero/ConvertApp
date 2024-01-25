@@ -18,6 +18,7 @@ namespace ConvertApp
         // Declare a global variable
         private string dataconvert;
 
+
         public Form1()
         {
             InitializeComponent();
@@ -25,14 +26,14 @@ namespace ConvertApp
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+         
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)
         {
             // Open File Dialog to select .mp4 file
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "MP4 files (*.mp4)|*.mp4|All files (*.*)|*.*";
+            openFileDialog.Filter = "MP4 files (*.mp4)|*.mp4";
             openFileDialog.FilterIndex = 1;
             openFileDialog.RestoreDirectory = true;
 
@@ -52,16 +53,11 @@ namespace ConvertApp
         {
             if (!string.IsNullOrEmpty(dataconvert))
             {
-                string mp4FilePath = dataconvert;
-                string mp3FilePath = $"Convert_{Path.GetFileNameWithoutExtension(mp4FilePath)}.mp3";
-
                 try
                 {
-                    using (var reader = new MediaFoundationReader(mp4FilePath))
-                    {
-                        WaveFileWriter.CreateWaveFile(mp3FilePath, reader);
-                    }
-
+                    btnBrowse.Enabled = false;
+                    btnConvert.Enabled = false;
+                    ConvertMp4ToMp3(dataconvert);
                     MessageBox.Show("Conversion successful!");
                 }
                 catch (Exception ex)
@@ -74,6 +70,36 @@ namespace ConvertApp
                 MessageBox.Show("Please select an MP4 file before converting.");
             }
 
+        }
+
+        private void ConvertMp4ToMp3(string mp4FilePath)
+        {
+            string mp3FilePath = $"{Path.GetFileNameWithoutExtension(mp4FilePath)}.mp3";
+
+            using (var reader = new MediaFoundationReader(mp4FilePath))
+            {
+                WaveFileWriter.CreateWaveFile(mp3FilePath, reader);
+            }
+
+            btnBrowse.Enabled = true;
+            btnConvert.Enabled = true;
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(dataconvert))
+            {
+                try
+                {
+                    txtFilePath.Text = "";
+                    dataconvert = "";
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error: {ex.Message}");
+                }
+            }
         }
     }
 }
