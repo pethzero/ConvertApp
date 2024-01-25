@@ -13,20 +13,20 @@ using NAudio.Wave;
 
 namespace ConvertApp
 {
-    public partial class Form1 : Form
+    public partial class FormApp : Form
     {
         // Declare a global variable
         private string dataconvert;
 
 
-        public Form1()
+        public FormApp()
         {
             InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-         
+
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)
@@ -58,31 +58,98 @@ namespace ConvertApp
                     btnBrowse.Enabled = false;
                     btnConvert.Enabled = false;
                     ConvertMp4ToMp3(dataconvert);
-                    MessageBox.Show("Conversion successful!");
+                    // Display a MessageBox with "Conversion successful!" message and OK button
+                    var result = MessageBox.Show("ทำการแปลงข้อมูลเรียบร้อย", "Success", MessageBoxButtons.OK);
+                    // Check if the user clicked the OK button
+                    if (result == DialogResult.OK)
+                    {
+                        // Update the progress bar to 0
+                        txtFilePath.Text = "";
+                        dataconvert = "";
+                        UpdateProgressBar(0);
+                    }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error during conversion: {ex.Message}");
+                    MessageBox.Show($"พบข้อผิดพลาด: {ex.Message}");
                 }
             }
             else
             {
-                MessageBox.Show("Please select an MP4 file before converting.");
+                MessageBox.Show("กรุณาเลือก MP4 ก่อนแปลงไฟล์");
             }
 
         }
-
+   
         private void ConvertMp4ToMp3(string mp4FilePath)
         {
             string mp3FilePath = $"{Path.GetFileNameWithoutExtension(mp4FilePath)}.mp3";
 
             using (var reader = new MediaFoundationReader(mp4FilePath))
             {
-                WaveFileWriter.CreateWaveFile(mp3FilePath, reader);
+                // UPDATELOADING
+                int bufferSize = 4096;
+                byte[] buffer = new byte[bufferSize];
+                long totalBytes = reader.Length;
+                long bytesRead = 0;
+
+                using (var writer = new WaveFileWriter(mp3FilePath, reader.WaveFormat))
+                {
+                    int read;
+                    while ((read = reader.Read(buffer, 0, bufferSize)) > 0)
+                    {
+                        writer.Write(buffer, 0, read);
+                        bytesRead += read;
+
+                        // Calculate the progress percentage
+                        int progress = (int)((double)bytesRead / totalBytes * 100);
+
+                        // Update the progress bar and label
+                        UpdateProgressBar(progress);
+                        //UpdateLabel(progress);
+
+                        // Add a small delay to avoid UI freezing
+                        //System.Threading.Thread.Sleep(2);
+                    }
+                }
             }
+
+            // Reset the progress bar and label to 100% after completion
+            UpdateProgressBar(100);
+           // UpdateLabel(100);
+
 
             btnBrowse.Enabled = true;
             btnConvert.Enabled = true;
+        }
+
+
+        private void UpdateProgressBar(int progress)
+        {
+            if (progressBar.InvokeRequired)
+            {
+                // If called from a different thread, invoke on the UI thread
+                progressBar.Invoke(new Action<int>(UpdateProgressBar), progress);
+            }
+            else
+            {
+                // Update the progress bar value
+                progressBar.Value = progress;
+            }
+        }
+
+        private void UpdateLabel(int progress)
+        {
+            if (lblProcess.InvokeRequired)
+            {
+                // If called from a different thread, invoke on the UI thread
+                lblProcess.Invoke(new Action<int>(UpdateLabel), progress);
+            }
+            else
+            {
+                // Update the label text
+                lblProcess.Text = $"Loading: {progress}%";
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -101,5 +168,8 @@ namespace ConvertApp
                 }
             }
         }
+
+
+
     }
 }
