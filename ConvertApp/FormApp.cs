@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using NAudio.Wave;
+using NAudio.Lame;
 
 namespace ConvertApp
 {
@@ -17,16 +18,20 @@ namespace ConvertApp
     {
         // Declare a global variable
         private string dataconvert;
-
+        private SystemConvert converter;
 
         public FormApp()
         {
             InitializeComponent();
+            AppInit();
+
+            // Create an instance of SystemConvert
+            converter = new SystemConvert(this);
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void AppInit()
         {
-
+            cbxConvert.SelectedIndex = 0;
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)
@@ -57,7 +62,9 @@ namespace ConvertApp
                 {
                     btnBrowse.Enabled = false;
                     btnConvert.Enabled = false;
-                    ConvertMp4ToMp3(dataconvert);
+
+                    converter.ProcessConvertMusic(dataconvert, cbxConvert.SelectedItem.ToString());
+
                     // Display a MessageBox with "Conversion successful!" message and OK button
                     var result = MessageBox.Show("ทำการแปลงข้อมูลเรียบร้อย", "Success", MessageBoxButtons.OK);
                     // Check if the user clicked the OK button
@@ -66,7 +73,7 @@ namespace ConvertApp
                         // Update the progress bar to 0
                         txtFilePath.Text = "";
                         dataconvert = "";
-                        UpdateProgressBar(0);
+                        converter.UpdateProgressBar(0);
                     }
                 }
                 catch (Exception ex)
@@ -80,78 +87,6 @@ namespace ConvertApp
             }
 
         }
-   
-        private void ConvertMp4ToMp3(string mp4FilePath)
-        {
-            string mp3FilePath = $"{Path.GetFileNameWithoutExtension(mp4FilePath)}.mp3";
-
-            using (var reader = new MediaFoundationReader(mp4FilePath))
-            {
-                // UPDATELOADING
-                int bufferSize = 4096;
-                byte[] buffer = new byte[bufferSize];
-                long totalBytes = reader.Length;
-                long bytesRead = 0;
-
-                using (var writer = new WaveFileWriter(mp3FilePath, reader.WaveFormat))
-                {
-                    int read;
-                    while ((read = reader.Read(buffer, 0, bufferSize)) > 0)
-                    {
-                        writer.Write(buffer, 0, read);
-                        bytesRead += read;
-
-                        // Calculate the progress percentage
-                        int progress = (int)((double)bytesRead / totalBytes * 100);
-
-                        // Update the progress bar and label
-                        UpdateProgressBar(progress);
-                        //UpdateLabel(progress);
-
-                        // Add a small delay to avoid UI freezing
-                        //System.Threading.Thread.Sleep(2);
-                    }
-                }
-            }
-
-            // Reset the progress bar and label to 100% after completion
-            UpdateProgressBar(100);
-           // UpdateLabel(100);
-
-
-            btnBrowse.Enabled = true;
-            btnConvert.Enabled = true;
-        }
-
-
-        private void UpdateProgressBar(int progress)
-        {
-            if (progressBar.InvokeRequired)
-            {
-                // If called from a different thread, invoke on the UI thread
-                progressBar.Invoke(new Action<int>(UpdateProgressBar), progress);
-            }
-            else
-            {
-                // Update the progress bar value
-                progressBar.Value = progress;
-            }
-        }
-
-        private void UpdateLabel(int progress)
-        {
-            if (lblProcess.InvokeRequired)
-            {
-                // If called from a different thread, invoke on the UI thread
-                lblProcess.Invoke(new Action<int>(UpdateLabel), progress);
-            }
-            else
-            {
-                // Update the label text
-                lblProcess.Text = $"Loading: {progress}%";
-            }
-        }
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(dataconvert))
@@ -171,7 +106,9 @@ namespace ConvertApp
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Close(); // ปิดแอปพลิเคชันหรือฟอร์ม
         }
+
+
     }
 }
