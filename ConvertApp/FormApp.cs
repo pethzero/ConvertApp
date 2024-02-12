@@ -12,13 +12,21 @@ using System.Windows.Forms;
 using NAudio.Wave;
 using NAudio.Lame;
 
+
+using System.Diagnostics;
+using System.Threading;
+
+using FFmpeg.AutoGen;
+
 namespace ConvertApp
 {
     public partial class FormApp : Form
     {
         // Declare a global variable
         private string dataconvert;
-        private SystemConvert converter;
+        private string dataHiRes;
+        private string data_image;
+        private SystemConvert SystemProcessConvert;
 
         public FormApp()
         {
@@ -26,12 +34,14 @@ namespace ConvertApp
             AppInit();
 
             // Create an instance of SystemConvert
-            converter = new SystemConvert(this);
+            SystemProcessConvert = new SystemConvert(this);
         }
 
         private void AppInit()
         {
             cbxConvert.SelectedIndex = 0;
+            cbxConvertImage.SelectedIndex = 0;
+            cbxHiRes.SelectedIndex = 0;
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)
@@ -63,7 +73,7 @@ namespace ConvertApp
                     btnBrowse.Enabled = false;
                     btnConvert.Enabled = false;
 
-                    converter.ProcessConvertMusic(dataconvert, cbxConvert.SelectedItem.ToString());
+                    SystemProcessConvert.ProcessConvertMusic(dataconvert, cbxConvert.SelectedItem.ToString());
 
                     // Display a MessageBox with "Conversion successful!" message and OK button
                     var result = MessageBox.Show("ทำการแปลงข้อมูลเรียบร้อย", "Success", MessageBoxButtons.OK);
@@ -73,7 +83,7 @@ namespace ConvertApp
                         // Update the progress bar to 0
                         txtFilePath.Text = "";
                         dataconvert = "";
-                        converter.UpdateProgressBar(0);
+                        SystemProcessConvert.UpdateProgressBar(progressBar, 0);
                     }
                 }
                 catch (Exception ex)
@@ -107,6 +117,65 @@ namespace ConvertApp
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close(); // ปิดแอปพลิเคชันหรือฟอร์ม
+        }
+
+        private void btnHiResBrowse_Click(object sender, EventArgs e)
+        {
+            if (ofdHiRes.ShowDialog() == DialogResult.OK)
+            {
+                // Set the selected file path to TextBox
+                string fileName = Path.GetFileName(ofdHiRes.FileName);
+                txtFilePathHiRes.Text = fileName;
+                btnHiResFile.Enabled = true; // Enable Convert button
+
+                // Assign the file path to the global variable
+                dataHiRes = ofdHiRes.FileName;
+
+            }
+        }
+
+        private void btnHiResFile_Click(object sender, EventArgs e)
+        {
+            SystemProcessConvert.HighRes(dataHiRes, cbxHiRes.SelectedIndex);
+        }
+
+
+
+
+        private void btnImageConvert_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(data_image))
+            {
+                //Console.WriteLine(data_image);   
+                SystemProcessConvert.ConvertImage(data_image, cbxConvertImage.SelectedItem.ToString());
+            }
+        }
+
+        private void btnImageBrowse_Click(object sender, EventArgs e)
+        {
+            if (ofdImage.ShowDialog() == DialogResult.OK)
+            {
+                // Set the selected file path to TextBox
+                string fileName = Path.GetFileName(ofdImage.FileName);
+                txtFilePathImage.Text = fileName;
+                btnImageConvert.Enabled = true; // Enable Convert button
+
+                // Assign the file path to the global variable
+                data_image = ofdImage.FileName;
+
+            }
+        }
+
+
+        private void btnTest_Click(object sender, EventArgs e)
+        {
+            // string inputFilePath = "test.mp3";
+            // SystemProcessConvert.HighRes(inputFilePath,cbxHiRes.SelectedIndex);
+        }
+
+        private unsafe void ResizeVideo()
+        {
+
         }
 
 

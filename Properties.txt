@@ -1,0 +1,14 @@
+btnImageBrowse
+txtFilePathImage
+progressBarImage
+btnImageFile
+ofdImage
+
+webp
+JPEG 
+PNG 
+SVG 
+HEIF/AVIF
+HEIF/HEIC
+
+openFileDialog1.Filter = "WebP Files (*.webp)|*.webp|JPEG Files (*.jpg, *.jpeg)|*.jpg;*.jpeg|PNG Files (*.png)|*.png|SVG Files (*.svg)|*.svg|HEIF/AVIF Files (*.avif)|*.avif|HEIF/HEIC Files (*.heic)|*.heic";

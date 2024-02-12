@@ -1,0 +1,98 @@
+ /////////////////////////////////////////////////////////////// 
+ private Thread workerThread;
+ private void btnTest_Click(object sender, EventArgs e)
+ {
+     // ถ้ามีการทำงานก่อนหน้านี้, ยกเลิกเธรดทำงาน
+     if (workerThread != null && workerThread.IsAlive)
+     {
+         workerThread.Abort();
+     }
+
+     // เริ่มทำงานในเธรดที่แตกต่างหนึ่งเพื่อไม่ให้ UI ติด
+     workerThread = new Thread(DoWork);
+     workerThread.Start();
+ }
+
+ private void DoWork()
+ {
+     // ทำงานที่ใช้เวลานาน
+     for (int i = 0; i <= 100; i++)
+     {
+         // ทำงานที่ใช้เวลานาน
+         Thread.Sleep(5);
+
+         // อัปเดต ProgressBar ในเธรด UI
+         Invoke(new Action(() =>
+         {
+             progressBarTest.Value = i;
+         }));
+     }
+
+     // ทำให้ ProgressBar เต็ม
+     Invoke(new Action(() =>
+     {
+         progressBarReSize.Value = progressBarReSize.Maximum;
+     }));
+
+     // แสดง MessageBox
+     MessageBox.Show("การทดสอบ ProgressBar เสร็จสิ้น!");
+ }
+
+ private void btnTestThread_Click(object sender, EventArgs e)
+ {
+     // // สร้าง Thread ใหม่และกำหนดเมทอดที่จะทำงาน
+     // Thread myThread = new Thread(MyFunction);
+
+     // // เริ่มทำงาน Thread
+     // myThread.Start();
+
+     // // ทำงานหลัก
+     // for (int i = 0; i <= 100; i++)
+     // {
+     //     Console.WriteLine("Main Thread: " + i);
+     //     Thread.Sleep(10); // หยุดทำงานสั้น ๆ
+     // }
+
+       // สร้าง Thread 1 และกำหนดเมทอดที่จะทำงาน
+     Thread processThread1 = new Thread(ProcessThread1);
+     processThread1.Name = "ProcessThread1";
+     processThread1.Start();
+
+     // สร้าง Thread 2 และกำหนดเมทอดที่จะทำงาน
+     Thread processThread2 = new Thread(ProcessThread2);
+     processThread2.Name = "ProcessThread2";
+     processThread2.Start();
+
+ }
+
+ private void MyFunction()
+ {
+     // ทำงานใน Thread ที่สร้าง
+     for (int i = 0; i <= 100; i++)
+     {
+         Console.WriteLine("Worker Thread: " + i);
+         Thread.Sleep(10); // หยุดทำงานสั้น ๆ
+     }
+ }
+
+
+   private void ProcessThread1()
+ {
+     // ทำงานใน Thread 1
+     for (int i = 0; i < 20; i++)
+     {
+         Console.WriteLine("Thread 1: " + i);
+         Thread.Sleep(1000); // หยุดทำงานสั้น ๆ
+     }
+ }
+
+ private void ProcessThread2()
+ {
+     // ทำงานใน Thread 2
+     for (int i = 0; i < 20; i++)
+     {
+         Console.WriteLine("Thread 2: " + i);
+         Thread.Sleep(1000); // หยุดทำงานสั้น ๆ
+     }
+ }
+///////////////////////////////////////////////////////////////
