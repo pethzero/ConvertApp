@@ -63,11 +63,10 @@
             this.label5 = new System.Windows.Forms.Label();
             this.progressBarImage = new System.Windows.Forms.ProgressBar();
             this.txtFilePathImage = new System.Windows.Forms.TextBox();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.btnTest = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2 = new System.Windows.Forms.Panel();
             this.ofdHiRes = new System.Windows.Forms.OpenFileDialog();
@@ -77,7 +76,6 @@
             this.TabConvertMP.SuspendLayout();
             this.TabResize.SuspendLayout();
             this.TabConvertimage.SuspendLayout();
-            this.tabPage3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -100,7 +98,7 @@
             this.txtFilePath.Margin = new System.Windows.Forms.Padding(4);
             this.txtFilePath.Name = "txtFilePath";
             this.txtFilePath.ReadOnly = true;
-            this.txtFilePath.Size = new System.Drawing.Size(360, 23);
+            this.txtFilePath.Size = new System.Drawing.Size(750, 23);
             this.txtFilePath.TabIndex = 3;
             // 
             // lblC1
@@ -118,7 +116,7 @@
             this.progressBar.Location = new System.Drawing.Point(45, 159);
             this.progressBar.Margin = new System.Windows.Forms.Padding(4);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(360, 28);
+            this.progressBar.Size = new System.Drawing.Size(750, 28);
             this.progressBar.TabIndex = 5;
             // 
             // lblProcess
@@ -136,13 +134,12 @@
             this.tabControl.Controls.Add(this.TabConvertMP);
             this.tabControl.Controls.Add(this.TabResize);
             this.tabControl.Controls.Add(this.TabConvertimage);
-            this.tabControl.Controls.Add(this.tabPage3);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.tabControl.Location = new System.Drawing.Point(0, 0);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(454, 282);
+            this.tabControl.Size = new System.Drawing.Size(829, 401);
             this.tabControl.TabIndex = 8;
             // 
             // TabConvertMP
@@ -163,7 +160,7 @@
             this.TabConvertMP.Location = new System.Drawing.Point(4, 25);
             this.TabConvertMP.Name = "TabConvertMP";
             this.TabConvertMP.Padding = new System.Windows.Forms.Padding(3);
-            this.TabConvertMP.Size = new System.Drawing.Size(446, 253);
+            this.TabConvertMP.Size = new System.Drawing.Size(821, 372);
             this.TabConvertMP.TabIndex = 0;
             this.TabConvertMP.Text = "ระบบจัดการเสียง";
             // 
@@ -191,10 +188,10 @@
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(306, 195);
+            this.btnExit.Location = new System.Drawing.Point(700, 325);
             this.btnExit.Margin = new System.Windows.Forms.Padding(4);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(100, 28);
+            this.btnExit.Size = new System.Drawing.Size(100, 30);
             this.btnExit.TabIndex = 10;
             this.btnExit.Text = "ออก";
             this.btnExit.UseVisualStyleBackColor = true;
@@ -202,7 +199,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(175, 195);
+            this.btnCancel.Location = new System.Drawing.Point(525, 325);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(100, 28);
@@ -213,10 +210,10 @@
             // 
             // btnConvert
             // 
-            this.btnConvert.Location = new System.Drawing.Point(45, 195);
+            this.btnConvert.Location = new System.Drawing.Point(340, 325);
             this.btnConvert.Margin = new System.Windows.Forms.Padding(4);
             this.btnConvert.Name = "btnConvert";
-            this.btnConvert.Size = new System.Drawing.Size(100, 28);
+            this.btnConvert.Size = new System.Drawing.Size(100, 30);
             this.btnConvert.TabIndex = 8;
             this.btnConvert.Text = "แปลง";
             this.btnConvert.UseVisualStyleBackColor = true;
@@ -238,7 +235,7 @@
             this.TabResize.Location = new System.Drawing.Point(4, 25);
             this.TabResize.Name = "TabResize";
             this.TabResize.Padding = new System.Windows.Forms.Padding(3);
-            this.TabResize.Size = new System.Drawing.Size(446, 253);
+            this.TabResize.Size = new System.Drawing.Size(847, 419);
             this.TabResize.TabIndex = 1;
             this.TabResize.Text = "HiRes";
             // 
@@ -277,30 +274,30 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(306, 195);
+            this.button1.Location = new System.Drawing.Point(700, 325);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 28);
+            this.button1.Size = new System.Drawing.Size(100, 30);
             this.button1.TabIndex = 17;
             this.button1.Text = "ออก";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(175, 195);
+            this.button2.Location = new System.Drawing.Point(525, 325);
             this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 28);
+            this.button2.Size = new System.Drawing.Size(100, 30);
             this.button2.TabIndex = 16;
             this.button2.Text = "เคลีย";
             this.button2.UseVisualStyleBackColor = true;
             // 
             // btnHiResFile
             // 
-            this.btnHiResFile.Location = new System.Drawing.Point(45, 195);
+            this.btnHiResFile.Location = new System.Drawing.Point(340, 325);
             this.btnHiResFile.Margin = new System.Windows.Forms.Padding(4);
             this.btnHiResFile.Name = "btnHiResFile";
-            this.btnHiResFile.Size = new System.Drawing.Size(100, 28);
+            this.btnHiResFile.Size = new System.Drawing.Size(100, 30);
             this.btnHiResFile.TabIndex = 15;
             this.btnHiResFile.Text = "HiRes";
             this.btnHiResFile.UseVisualStyleBackColor = true;
@@ -332,7 +329,7 @@
             this.progressBarHiRes.Location = new System.Drawing.Point(45, 159);
             this.progressBarHiRes.Margin = new System.Windows.Forms.Padding(4);
             this.progressBarHiRes.Name = "progressBarHiRes";
-            this.progressBarHiRes.Size = new System.Drawing.Size(360, 28);
+            this.progressBarHiRes.Size = new System.Drawing.Size(750, 28);
             this.progressBarHiRes.TabIndex = 14;
             // 
             // txtFilePathHiRes
@@ -341,7 +338,7 @@
             this.txtFilePathHiRes.Margin = new System.Windows.Forms.Padding(4);
             this.txtFilePathHiRes.Name = "txtFilePathHiRes";
             this.txtFilePathHiRes.ReadOnly = true;
-            this.txtFilePathHiRes.Size = new System.Drawing.Size(360, 23);
+            this.txtFilePathHiRes.Size = new System.Drawing.Size(750, 23);
             this.txtFilePathHiRes.TabIndex = 12;
             // 
             // TabConvertimage
@@ -359,7 +356,7 @@
             this.TabConvertimage.Controls.Add(this.txtFilePathImage);
             this.TabConvertimage.Location = new System.Drawing.Point(4, 25);
             this.TabConvertimage.Name = "TabConvertimage";
-            this.TabConvertimage.Size = new System.Drawing.Size(446, 253);
+            this.TabConvertimage.Size = new System.Drawing.Size(847, 419);
             this.TabConvertimage.TabIndex = 3;
             this.TabConvertimage.Text = "แปลงรูปภาพ";
             // 
@@ -402,30 +399,30 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(306, 195);
+            this.button3.Location = new System.Drawing.Point(700, 325);
             this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(100, 28);
+            this.button3.Size = new System.Drawing.Size(100, 30);
             this.button3.TabIndex = 25;
             this.button3.Text = "ออก";
             this.button3.UseVisualStyleBackColor = true;
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(175, 195);
+            this.button4.Location = new System.Drawing.Point(525, 325);
             this.button4.Margin = new System.Windows.Forms.Padding(4);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(100, 28);
+            this.button4.Size = new System.Drawing.Size(100, 30);
             this.button4.TabIndex = 24;
             this.button4.Text = "เคลีย";
             this.button4.UseVisualStyleBackColor = true;
             // 
             // btnImageConvert
             // 
-            this.btnImageConvert.Location = new System.Drawing.Point(45, 195);
+            this.btnImageConvert.Location = new System.Drawing.Point(340, 325);
             this.btnImageConvert.Margin = new System.Windows.Forms.Padding(4);
             this.btnImageConvert.Name = "btnImageConvert";
-            this.btnImageConvert.Size = new System.Drawing.Size(100, 28);
+            this.btnImageConvert.Size = new System.Drawing.Size(100, 30);
             this.btnImageConvert.TabIndex = 23;
             this.btnImageConvert.Text = "แปลงรูปถาพ";
             this.btnImageConvert.UseVisualStyleBackColor = true;
@@ -457,7 +454,7 @@
             this.progressBarImage.Location = new System.Drawing.Point(45, 159);
             this.progressBarImage.Margin = new System.Windows.Forms.Padding(4);
             this.progressBarImage.Name = "progressBarImage";
-            this.progressBarImage.Size = new System.Drawing.Size(360, 28);
+            this.progressBarImage.Size = new System.Drawing.Size(750, 28);
             this.progressBarImage.TabIndex = 22;
             // 
             // txtFilePathImage
@@ -466,29 +463,8 @@
             this.txtFilePathImage.Margin = new System.Windows.Forms.Padding(4);
             this.txtFilePathImage.Name = "txtFilePathImage";
             this.txtFilePathImage.ReadOnly = true;
-            this.txtFilePathImage.Size = new System.Drawing.Size(360, 23);
+            this.txtFilePathImage.Size = new System.Drawing.Size(750, 23);
             this.txtFilePathImage.TabIndex = 20;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.BackColor = System.Drawing.Color.Gainsboro;
-            this.tabPage3.Controls.Add(this.btnTest);
-            this.tabPage3.Location = new System.Drawing.Point(4, 25);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(446, 253);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Test";
-            // 
-            // btnTest
-            // 
-            this.btnTest.Location = new System.Drawing.Point(35, 25);
-            this.btnTest.Name = "btnTest";
-            this.btnTest.Size = new System.Drawing.Size(75, 23);
-            this.btnTest.TabIndex = 0;
-            this.btnTest.Text = "Test";
-            this.btnTest.UseVisualStyleBackColor = true;
-            this.btnTest.Visible = false;
-            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
             // 
             // panel1
             // 
@@ -496,7 +472,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(454, 29);
+            this.panel1.Size = new System.Drawing.Size(829, 29);
             this.panel1.TabIndex = 9;
             // 
             // menuStrip1
@@ -505,22 +481,30 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(454, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(829, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.settingToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
+            // settingToolStripMenuItem
+            // 
+            this.settingToolStripMenuItem.Name = "settingToolStripMenuItem";
+            this.settingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.settingToolStripMenuItem.Text = "Setting";
+            this.settingToolStripMenuItem.Click += new System.EventHandler(this.settingToolStripMenuItem_Click);
+            // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.btnExit_Click);
             // 
@@ -530,7 +514,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 29);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(454, 282);
+            this.panel2.Size = new System.Drawing.Size(829, 401);
             this.panel2.TabIndex = 10;
             // 
             // ofdHiRes
@@ -547,7 +531,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(454, 311);
+            this.ClientSize = new System.Drawing.Size(829, 430);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -564,7 +548,6 @@
             this.TabResize.PerformLayout();
             this.TabConvertimage.ResumeLayout(false);
             this.TabConvertimage.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
@@ -603,8 +586,6 @@
         public System.Windows.Forms.Button btnHiResBrowse;
         public System.Windows.Forms.OpenFileDialog ofdHiRes;
         public System.Windows.Forms.ProgressBar progressBarHiRes;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.Button btnTest;
         private System.Windows.Forms.TabPage TabConvertimage;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button3;
@@ -619,6 +600,7 @@
         private System.Windows.Forms.ComboBox cbxConvertImage;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cbxHiRes;
+        private System.Windows.Forms.ToolStripMenuItem settingToolStripMenuItem;
     }
 }
 

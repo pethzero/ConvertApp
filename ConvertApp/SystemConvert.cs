@@ -27,8 +27,18 @@ namespace ConvertApp
 
         public void ProcessConvertMusic(string mp4FilePath, string selectedFormat)
         {
+            string outputFilePath = "";
             string outputExtension = selectedFormat.ToLower().Trim();
-            string outputFilePath = $"{Path.GetFileNameWithoutExtension(mp4FilePath)}.{outputExtension}";
+            string LocationSave = Properties.Settings.Default.SettingLocationSave;
+            if (LocationSave != "")
+            {
+                outputFilePath = LocationSave + $"\\{Path.GetFileNameWithoutExtension(mp4FilePath)}.{outputExtension}";
+            }
+            else
+            {
+                outputFilePath =  $"{Path.GetFileNameWithoutExtension(mp4FilePath)}.{outputExtension}";
+            }
+          
 
 
             using (var reader = new MediaFoundationReader(mp4FilePath))
@@ -114,7 +124,17 @@ namespace ConvertApp
         {
             bool data_status = true;
             string outputExtension = selectedFormat.ToLower().Trim();
-            string outputFilePath = $"{Path.GetFileNameWithoutExtension(ImageFilePath)}.{outputExtension}";
+            string outputFilePath = "";
+            string LocationSave = Properties.Settings.Default.SettingLocationSave;
+            if (LocationSave != "")
+            {
+                outputFilePath = LocationSave + $"\\{Path.GetFileNameWithoutExtension(ImageFilePath)}.{outputExtension}";
+            }
+            else
+            {
+                outputFilePath = $"{Path.GetFileNameWithoutExtension(ImageFilePath)}.{outputExtension}";
+            }
+
 
             using (MagickImage image = new MagickImage(ImageFilePath))
             {
@@ -176,7 +196,17 @@ namespace ConvertApp
                     break;
             }
 
-            string outputFilePath = $"{Path.GetFileNameWithoutExtension(inputFilePath)}_{level_name}.{"wav"}";
+            //string outputFilePath = $"{Path.GetFileNameWithoutExtension(inputFilePath)}_{level_name}.{"wav"}";
+            string outputFilePath = "";
+            string LocationSave = Properties.Settings.Default.SettingLocationSave;
+            if (LocationSave != "")
+            {
+                outputFilePath = LocationSave + $"\\{Path.GetFileNameWithoutExtension(inputFilePath)}_{level_name}.{"wav"}";
+            }
+            else
+            {
+                outputFilePath = $"{Path.GetFileNameWithoutExtension(inputFilePath)}_{level_name}.{"wav"}";
+            }
             Console.WriteLine(outputFilePath);
             using (var mp3Reader = new Mp3FileReader(inputFilePath))
             {

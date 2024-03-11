@@ -140,8 +140,6 @@ namespace ConvertApp
         }
 
 
-
-
         private void btnImageConvert_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(data_image))
@@ -166,18 +164,18 @@ namespace ConvertApp
             }
         }
 
-
-        private void btnTest_Click(object sender, EventArgs e)
-        {
-            // string inputFilePath = "test.mp3";
-            // SystemProcessConvert.HighRes(inputFilePath,cbxHiRes.SelectedIndex);
-        }
-
         private unsafe void ResizeVideo()
         {
 
         }
 
+        private void settingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // สร้าง instance ของ FormSetting
+            FormSetting formSetting = new FormSetting();
 
+            // แสดงหน้าต่าง FormSetting
+            formSetting.ShowDialog();
+        }
     }
 }
